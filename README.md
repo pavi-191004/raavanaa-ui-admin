@@ -18,7 +18,7 @@ Colleges are trying to help their students grow, but there’s no simple way to 
 
 Raavana brings everyone together and makes it easier to see, grow, and connect through real skills.
 
-## What is this Repository?
+## What is the purpose of this repository?
 
 ### Purpose
 
