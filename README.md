@@ -46,19 +46,19 @@ The Admin module empowers institutional administrators to manage their branded s
 - Admin can assign recruiters
 - Admin receives real-time drive statistics
 
-## What contents does it have? What they can do?
+## What contents does it have?
 
 ```bash
 
-- Create a customized app (like yourcollege.raavana.app)
+-   Create a customized app (like yourcollege.raavana.app)
 
-- Add college details like logo, departments, colors
+-   Add college details like logo, departments, colors
 
-- Add or manage students
+-   Add or manage students
 
 -	Create recruitment drives with process and timelines
 
--	Set eligibility criteria for each drive
+-	Set eligibility criteria in each drive
 
 -	Approve or reject student applications
 
@@ -67,6 +67,19 @@ The Admin module empowers institutional administrators to manage their branded s
 -	See dashboards with useful data: number of students, drives, selections
 
 -	Add recruiters to the drive and manage recruiter access
+```
+
+## What they can get?
+```bash
+-	They get a complete system to manage students, drives, and reports.
+
+-	They can see what students are learning and how they’re growing.
+
+-	They can post opportunities easily and track results.
+
+-	The platform becomes a digital extension of their placement cell.
+
+-	It improves placement outcomes and institutional branding.
 ```
 
 ## How to install and how to start?
@@ -88,7 +101,7 @@ cd raavanaa-ui-admin
 
 ### 2. Install Dependencies
 
-Make sure you have Node.js (>= 16.x) installed.
+Make sure you have Node.js installed.
 Then, install dependencies using npm (or yarn/pnpm if you prefer):
 
 ```bash
