@@ -1,16 +1,14 @@
-import './App.css'
-function App() {
- return (
-    
-    <div>
+import React from "react";
+import "./App.css";
+import OnboardingForm from "./components/OnboardingForm";
 
-     <h1>Welcome to Admin Module</h1>
-     
+function App() {
+  return (
+    <div className="App">
+      
+      <OnboardingForm />
     </div>
-     
-     
-  
-  )
+  );
 }
 
-export default App
+export default App;
