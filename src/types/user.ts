@@ -9,7 +9,7 @@ export type personalinfo={
 export type OrganizationInfo = {
   organizationId: string;
   organizationName: string;
-  organizationType: "college" | "university" | "group_of_institutions"; // ✅ fixed spelling & values
+  organizationType: "college" | "university" | "group_of_institutions"; 
   location: string;
   website: string;
   subdomain: string;
