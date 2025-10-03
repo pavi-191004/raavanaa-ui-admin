@@ -1,72 +1,34 @@
 import React, { useState } from "react";
-import PersonalInfoPage from "../pages/PersonalInfo";
-import OrganizationPage from "../pages/Organization";
-import PortalInfoPage from "../pages/PortalInfo";
-import { useOnboardingMutation } from "../hooks/useOnboarding";
-import type { PersonalInfo, OrganizationInfo, PortalConfig } from "../types/user";
+import PersonalInfoPage from "../pages/PersonalInfoPage";
+import OrganizationInfoPage from "../pages/OrganizationInfoPage";
+import { usePersonalInfo } from "../hooks/usePersonalInfo";
+import { useOrganizationInfo } from "../hooks/useOrganizationInfo";
+import type { personalinfo, OrganizationInfo } from "../types/user";
 
 const OnboardingForm: React.FC = () => {
   const [step, setStep] = useState(1);
+  const personalMutation = usePersonalInfo();
+  const organizationMutation = useOrganizationInfo();
 
-  const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
-    fullName: "",
-    roleId: "",
-  });
-
-  const [organizationInfo, setOrganizationInfo] = useState<OrganizationInfo>({
-    organizationName: "",
-    organizationType: "",
-  });
-
-  const [portalConfig, setPortalConfig] = useState<PortalConfig>({
-    website: "",
-    subdomain: "",
-    departments: [],
-  });
-
-  const mutation = useOnboardingMutation();
-
-  const handleSubmit = (portalData: PortalConfig) => {
-    setPortalConfig(portalData);
-    mutation.mutate({
-      personalInfo,
-      organizationInfo,
-      portalConfig: portalData,
+  const handlePersonalSubmit = (data: personalinfo) => {
+    personalMutation.mutate(data, {
+      onSuccess: () => setStep(2),
     });
+  };
+
+  const handleOrganizationSubmit = (data: OrganizationInfo) => {
+    organizationMutation.mutate(data);
   };
 
   return (
     <div>
-      {step === 1 && (
-        <PersonalInfoPage
-          data={personalInfo}
-          onNext={(data) => {
-            setPersonalInfo(data);
-            setStep(2);
-          }}
-        />
-      )}
+      {step === 1 && <PersonalInfoPage onNext={handlePersonalSubmit} />}
+      {step === 2 && <OrganizationInfoPage onSubmit={handleOrganizationSubmit} />}
 
-      {step === 2 && (
-        <OrganizationPage
-          data={organizationInfo}
-          onNext={(data) => {
-            setOrganizationInfo(data);
-            setStep(3);
-          }}
-        />
-      )}
+      {personalMutation.isPending && <p>Submitting personal info...</p>}
+      {organizationMutation.isPending && <p>Submitting organization info...</p>}
 
-      {step === 3 && (
-        <PortalInfoPage
-          data={portalConfig}
-          onSubmit={(data) => handleSubmit(data)}
-        />
-      )}
-
-      {mutation.isPending && <p>Submitting...</p>}
-      {mutation.isSuccess && <p>{mutation.data.message}</p>}
-      {mutation.isError && <p>Error: {mutation.error.message}</p>}
+      {organizationMutation.isSuccess && <p> Onboarding Completed!</p>}
     </div>
   );
 };

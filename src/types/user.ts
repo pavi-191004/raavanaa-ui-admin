@@ -1,28 +1,22 @@
+export type personalinfo={
+    fullName:string;
+    designation:string;
+    contactNumber:number;
+    roleId:"superadmin"|"admin"|"placement officer";
 
-export type PersonalInfo = {
-  fullName: string;
-  roleId: ""|"superadmin" | "admin" | "placement_officer";
 };
 
 export type OrganizationInfo = {
+  organizationId: string;
   organizationName: string;
-  organizationType: ""|"college" | "university" | "institute" | "company";
-};
-
-export type PortalConfig = {
+  organizationType: "college" | "university" | "group_of_institutions"; // ✅ fixed spelling & values
+  location: string;
   website: string;
   subdomain: string;
-  departments: string[];
-};
-
-export type OnboardingRequest = {
-  personalInfo: PersonalInfo;
-  organizationInfo: OrganizationInfo;
-  portalConfig: PortalConfig;
-};
-
-
-export type OnboardingResponse = {
-  onboardingId: string;
-  message: string;
+  departments: "CSE"
+  | "ECE"
+  | "AIDS"
+  | "CSBS"
+  | "EEE"
+  | "AIML"[];
 };
