@@ -1,16 +1,14 @@
-import './App.css'
-function App() {
- return (
-    
-    <div>
 
-     <h1>Welcome to Admin Module</h1>
-     
+import "./App.css";
+import OnboardingForm from "./components/OnboardingForm";
+
+function App() {
+  return (
+    <div className="App">
+      
+     <OnboardingForm/>
     </div>
-     
-     
-  
-  )
+  );
 }
 
-export default App
+export default App;
