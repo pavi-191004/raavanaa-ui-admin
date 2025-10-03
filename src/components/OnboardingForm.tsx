@@ -6,7 +6,7 @@ import { useOrganizationInfo } from "../hooks/useOrganizationInfo";
 import type { personalinfo, OrganizationInfo } from "../types/user";
 
 const OnboardingForm: React.FC = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const personalMutation = usePersonalInfo();
   const organizationMutation = useOrganizationInfo();
 

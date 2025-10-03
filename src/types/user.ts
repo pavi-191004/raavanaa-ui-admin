@@ -18,5 +18,5 @@ export type OrganizationInfo = {
   | "AIDS"
   | "CSBS"
   | "EEE"
-  | "AIML"[];
+  | "AIML";
 };

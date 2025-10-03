@@ -2,28 +2,22 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import type { OrganizationInfo } from "../types/user";
 
-type props = {
+type Props = {
   onSubmit: (data: OrganizationInfo) => void;
 };
 
 const departmentOptions = ["CSE", "ECE", "AIDS", "CSBS", "EEE", "AIML"] as const;
 
-const OrganizationInfopage: React.FC<props> = ({ onSubmit }) => {
+const OrganizationInfopage: React.FC<Props> = ({ onSubmit }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-   
   } = useForm<OrganizationInfo>();
-
- 
-  
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h2>Organization Info</h2>
-
-      
       <input
         {...register("organizationId", {
           required: "Organization ID is required",
@@ -37,8 +31,6 @@ const OrganizationInfopage: React.FC<props> = ({ onSubmit }) => {
       {errors.organizationId && (
         <p style={{ color: "red" }}>{errors.organizationId.message}</p>
       )}
-
-     
       <input
         {...register("organizationName", {
           required: "Organization Name is required",
@@ -52,8 +44,6 @@ const OrganizationInfopage: React.FC<props> = ({ onSubmit }) => {
       {errors.organizationName && (
         <p style={{ color: "red" }}>{errors.organizationName.message}</p>
       )}
-
-      
       <select
         {...register("organizationType", {
           required: "Organization Type is required",
@@ -67,8 +57,6 @@ const OrganizationInfopage: React.FC<props> = ({ onSubmit }) => {
       {errors.organizationType && (
         <p style={{ color: "red" }}>{errors.organizationType.message}</p>
       )}
-
-      
       <input
         {...register("location", {
           required: "Location is required",
@@ -82,14 +70,11 @@ const OrganizationInfopage: React.FC<props> = ({ onSubmit }) => {
       {errors.location && (
         <p style={{ color: "red" }}>{errors.location.message}</p>
       )}
-
-      
       <input
         {...register("website", {
           required: "Website URL is required",
           pattern: {
-            value:
-              /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/.*)?$/,
+            value: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/.*)?$/,
             message: "Enter a valid website URL (e.g., https://example.com)",
           },
         })}
@@ -99,7 +84,7 @@ const OrganizationInfopage: React.FC<props> = ({ onSubmit }) => {
         <p style={{ color: "red" }}>{errors.website.message}</p>
       )}
 
-      {/* Subdomain */}
+     
       <input
         {...register("subdomain", {
           required: "Subdomain is required",
@@ -119,32 +104,27 @@ const OrganizationInfopage: React.FC<props> = ({ onSubmit }) => {
         <p style={{ color: "red" }}>{errors.subdomain.message}</p>
       )}
 
-      {/* Departments - Multiple checkboxes */}
-      <div>
-        <p>
-          <strong>Select Departments:</strong>
-        </p>
-        {departmentOptions.map((dept) => (
-          <label key={dept} style={{ marginRight: "10px" }}>
-            <input
-              type="checkbox"
-              value={dept}
-              {...register("departments", {
-                validate: (value) =>
-                  value && value.length > 0
-                    ? true
-                    : "At least one department must be selected",
-              })}
-            />
-            {dept}
-          </label>
-        ))}
-        {errors.departments && (
-          <p style={{ color: "red" }}>
-            {(errors.departments as any).message}
-          </p>
-        )}
-      </div>
+      
+<div>
+  <p>
+    <strong>Select Department:</strong>
+  </p>
+  {departmentOptions.map((dept) => (
+    <label key={dept} style={{ marginRight: "10px" }}>
+      <input
+        type="radio"
+        value={dept}
+        {...register("departments", {
+          required: "Please select one department",
+        })}
+      />
+      {dept}
+    </label>
+  ))}
+  {errors.departments && (
+    <p style={{ color: "red" }}>{(errors.departments as any).message}</p>
+  )}
+</div>
 
       <button type="submit" style={{ marginTop: "10px" }}>
         Submit
