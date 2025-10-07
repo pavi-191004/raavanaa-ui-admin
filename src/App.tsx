@@ -1,10 +1,12 @@
 import './App.css'
+import { RecruiterPage } from './Pages/RecruiterPage'
 function App() {
  return (
     
     <div>
 
-     <h1>Welcome to Admin Module</h1>
+
+     <RecruiterPage/>
      
     </div>
      
